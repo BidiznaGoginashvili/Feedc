@@ -9,15 +9,10 @@ namespace Feedc.Application.Query.UserQueries
     {
         public string Password { get; set; }
         public string FirstName { get; set; }
+
         public AuthenticateUserQuery()
         {
 
-        }
-
-        public AuthenticateUserQuery(string firstName, string password)
-        {
-            FirstName = firstName;
-            Password = password;
         }
 
         public override async Task<QueryExecutionResult<User>> ExecuteAsync()

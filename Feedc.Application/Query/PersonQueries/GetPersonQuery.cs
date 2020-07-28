@@ -15,11 +15,6 @@ namespace Feedc.Application.Query.PersonQueries
 
         }
 
-        public GetPersonQuery(string phone)
-        {
-            Phone = phone;
-        }
-
         public override async Task<QueryExecutionResult<Person>> ExecuteAsync()
         {
             var repository = GetService<IRepository<Person>>();

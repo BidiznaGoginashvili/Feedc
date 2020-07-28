@@ -6,20 +6,14 @@ using Feedc.Infrastructure.Database.Repository;
 
 namespace Feedc.Application.Command.PersonCommands
 {
-    public class AddPersonPhoneCommand : Infrastructure.Command
+    public class BoundPhoneCommand : Infrastructure.Command
     {
         public string Phone { get; set; }
         public int PersonId { get; set; }
 
-        public AddPersonPhoneCommand()
+        public BoundPhoneCommand()
         {
 
-        }
-
-        public AddPersonPhoneCommand(int personId, string phone)
-        {
-            Phone = phone;
-            PersonId = personId;
         }
 
         public override async Task<CommandExecutionResult> ExecuteAsync()

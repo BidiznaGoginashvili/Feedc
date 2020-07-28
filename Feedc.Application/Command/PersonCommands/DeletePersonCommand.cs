@@ -15,11 +15,6 @@ namespace Feedc.Application.Command.PersonCommands
 
         }
 
-        public DeletePersonCommand(int id)
-        {
-            Id = id;
-        }
-
         public override async Task<CommandExecutionResult> ExecuteAsync()
         {
             var repository = GetService<IRepository<Person>>();

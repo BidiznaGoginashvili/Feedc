@@ -15,12 +15,6 @@ namespace Feedc.Application.UserCommands.Command
 
         }
 
-        public CreateUserCommand(string firstName, string password)
-        {
-            Password = password;
-            FirstName = firstName;
-        }
-
         public override async Task<CommandExecutionResult> ExecuteAsync()
         {
             var userManager = GetService<UserManager<User>>();

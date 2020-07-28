@@ -20,20 +20,12 @@ namespace Feedc.Application.Command.PersonCommands
             context = new Feedc.Infrastructure.Database.FeedcContext();
         }
 
-        public CreatePersonCommand(int userId, string phone, string lastName, string firstName)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            Phone = phone;
-            UserId = userId;
-        }
-
         public override async Task<CommandExecutionResult> ExecuteAsync()
         {
             try
             {
                 var repository = GetService<IRepository<User>>();
-                var person = new Person(FirstName, LastName, Phone);
+                var person = new Person(Phone, LastName, FirstName);
 
                 var user = repository.GetById(UserId);
                 context.Add(person);

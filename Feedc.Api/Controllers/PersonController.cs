@@ -64,7 +64,7 @@ namespace Feedc.Api.Controllers
         [HttpPost]
         [Route("boundphonenumber")]
         [Authorize]
-        public async Task<IActionResult> BoundPhoneNumber([FromBody] AddPersonPhoneCommand command)
+        public async Task<IActionResult> BoundPhoneNumber([FromBody] BoundPhoneCommand command)
         {
             var result = await _commandExecutor.ExecuteAsync(command);
 

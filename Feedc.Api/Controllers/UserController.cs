@@ -45,23 +45,22 @@ namespace Feedc.Api.Controllers
             return Ok(new { success = true });
         }
 
-        [HttpGet("login")]
+        [HttpGet]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] AuthenticateUserQuery query)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            IActionResult response = Unauthorized();
             var result = await _queryExecutor.ExecuteAsync<AuthenticateUserQuery, User>(query);
 
             if (result.Success)
             {
                 var token = GenerateJsonWebToken(result.Data);
-                response = Ok(new { token = token });
+                return Ok(new { token = token });
             }
 
-            return response;
+            return BadRequest(new { success = false });
         }
 
         private string GenerateJsonWebToken(User user)
