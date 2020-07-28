@@ -9,7 +9,6 @@ namespace Feedc.Application.Query.PersonQueries
 {
     public class GetPersonsPhonesQuery : Query<List<Person>>
     {
-        private IRepository<Person> personRepository = new Repository<Person>();
         public GetPersonsPhonesQuery()
         {
 
@@ -17,7 +16,8 @@ namespace Feedc.Application.Query.PersonQueries
 
         public override async Task<QueryExecutionResult<List<Person>>> ExecuteAsync()
         {
-            var persons = personRepository.GetAll()
+            var repository = GetService<IRepository<Person>>();
+            var persons = repository.GetAll()
                              .Where(person => !string.IsNullOrWhiteSpace(person.Phone))
                              .ToList();
 

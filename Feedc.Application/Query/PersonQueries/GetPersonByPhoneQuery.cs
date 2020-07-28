@@ -9,7 +9,6 @@ namespace Feedc.Application.Query.PersonQueries
     public class GetPersonByPhoneQuery : Query<Person>
     {
         public string Phone { get; set; }
-        private IRepository<Person> personRepository = new Repository<Person>();
 
         public GetPersonByPhoneQuery()
         {
@@ -23,7 +22,8 @@ namespace Feedc.Application.Query.PersonQueries
 
         public override async Task<QueryExecutionResult<Person>> ExecuteAsync()
         {
-            var person = personRepository
+            var repository = GetService<IRepository<Person>>();
+            var person = repository
                   .GetAll()
                   .FirstOrDefault(person => person.Phone == Phone);
 

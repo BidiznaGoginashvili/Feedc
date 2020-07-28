@@ -11,8 +11,6 @@ namespace Feedc.Application.Command.PersonCommands
         public string Phone { get; set; }
         public int PersonId { get; set; }
 
-        private IRepository<Person> personRepository = new Repository<Person>();
-
         public AddPersonPhoneCommand()
         {
 
@@ -26,20 +24,21 @@ namespace Feedc.Application.Command.PersonCommands
 
         public override async Task<CommandExecutionResult> ExecuteAsync()
         {
-            var person = personRepository.GetById(PersonId);
+            var repository = GetService<IRepository<Person>>();
+            var person = repository.GetById(PersonId);
 
             if (person == null)
                 return await FailAsync();
-            if (!Unique())
+            if (!Unique(repository))
                 return await FailAsync();
 
             person.Phone = Phone;
 
-            personRepository.Update(person);
+            repository.Update(person);
 
             return await OkAsync();
         }
 
-        public bool Unique() => personRepository.GetAll().Any(person => person.Phone == Phone && person.Id != PersonId) ? false : true;
+        public bool Unique(IRepository<Person> repository) => repository.GetAll().Any(person => person.Phone == Phone && person.Id != PersonId) ? false : true;
     }
 }

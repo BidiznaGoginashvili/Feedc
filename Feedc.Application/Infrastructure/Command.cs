@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Feedc.Application.Infrastructure
 {
@@ -6,10 +7,11 @@ namespace Feedc.Application.Infrastructure
     {
         public abstract Task<CommandExecutionResult> ExecuteAsync();
 
-        protected Task<CommandExecutionResult> FailAsync()
+        protected Task<CommandExecutionResult> FailAsync(Exception exception = null)
         {
             var result = new CommandExecutionResult
             {
+                Exception = exception,
                 Success = false
             };
 

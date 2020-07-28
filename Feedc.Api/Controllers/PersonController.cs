@@ -77,7 +77,7 @@ namespace Feedc.Api.Controllers
         [HttpGet]
         [Route("personbyphone")]
         [Authorize]
-        public async Task<IActionResult> GetPersonByPhone([FromBody] GetPersonByPhoneQuery query)
+        public async Task<IActionResult> PersonByPhone([FromBody] GetPersonByPhoneQuery query)
         {
             var result = await _queryExecutor.ExecuteAsync<GetPersonByPhoneQuery, Person>(query);
 

@@ -9,12 +9,11 @@ namespace Feedc.Application.Command.PersonCommands
 {
     public class CreatePersonCommand : Infrastructure.Command
     {
-        private Feedc.Infrastructure.Database.FeedcContext context;
-        private IRepository<User> userRepository = new Repository<User>();
         public int UserId { get; set; }
         public string Phone { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+        private Feedc.Infrastructure.Database.FeedcContext context;
 
         public CreatePersonCommand()
         {
@@ -33,8 +32,10 @@ namespace Feedc.Application.Command.PersonCommands
         {
             try
             {
+                var repository = GetService<IRepository<User>>();
                 var person = new Person(FirstName, LastName, Phone);
-                var user = userRepository.GetById(UserId);
+
+                var user = repository.GetById(UserId);
                 context.Add(person);
                 person.User = user;
                 context.SaveChanges();
@@ -43,7 +44,7 @@ namespace Feedc.Application.Command.PersonCommands
             }
             catch (Exception exception)
             {
-                return await FailAsync();
+                return await FailAsync(exception);
             }
         }
     }

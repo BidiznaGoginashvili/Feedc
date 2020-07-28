@@ -22,7 +22,6 @@ namespace Feedc.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("FeedcDbContext");
@@ -34,10 +33,7 @@ namespace Feedc.Api
             services.AddControllers();
             services.AddScoped<CommandExecutor, CommandExecutor>();
             services.AddScoped<QueryExecutor, QueryExecutor>();
-            //services.AddIdentity<User, Role>(options => { })
-            //    .AddUserStore<User,Role,FeedcContext,int,UserRole,null>()
-            //    .AddUserManager<UserManager<User>>();
-
+            
             services.AddIdentity<User, Role>(options =>
             {
                 options.SignIn.RequireConfirmedEmail = false;
@@ -78,7 +74,6 @@ namespace Feedc.Api
             services.AddDbContext<FeedcContext>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

@@ -23,6 +23,7 @@ namespace Feedc.Application.Infrastructure
             {
                 return new CommandExecutionResult
                 {
+                    Exception = exception,
                     Success = false
                 };
             }

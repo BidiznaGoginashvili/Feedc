@@ -20,6 +20,7 @@ namespace Feedc.Api.Controllers
         private IConfiguration _config;
         private QueryExecutor _queryExecutor;
         private CommandExecutor _commandExecutor;
+
         public UserController(IConfiguration config,
                QueryExecutor queryExecutor,
                CommandExecutor commandExecutor)
