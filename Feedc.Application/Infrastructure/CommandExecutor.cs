@@ -1,14 +1,17 @@
 ﻿using System;
+using Serilog;
 using System.Threading.Tasks;
 
 namespace Feedc.Application.Infrastructure
 {
     public class CommandExecutor
     {
+        private readonly ILogger _logger;
         public IServiceProvider _serviceProvider;
 
-        public CommandExecutor(IServiceProvider serviceProvider)
+        public CommandExecutor(ILogger logger, IServiceProvider serviceProvider)
         {
+            _logger = Log.ForContext<CommandExecutor>();
             _serviceProvider = serviceProvider;
         }
 
@@ -16,7 +19,7 @@ namespace Feedc.Application.Infrastructure
         {
             try
             {
-                command.Resolve(_serviceProvider);
+                command.Resolve(_logger, _serviceProvider);
                 return await command.ExecuteAsync();
             }
             catch (Exception exception)

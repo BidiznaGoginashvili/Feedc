@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Feedc.Infrastructure.Database.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Serilog;
 
 namespace Feedc.Api
 {
@@ -41,6 +42,8 @@ namespace Feedc.Api
             });
 
             services.AddControllers();
+            services.AddSingleton<ILogger>(Log.Logger);
+
             services.AddScoped<CommandExecutor, CommandExecutor>();
             services.AddScoped<QueryExecutor, QueryExecutor>();
 
@@ -92,6 +95,8 @@ namespace Feedc.Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
             app.UseAuthentication();

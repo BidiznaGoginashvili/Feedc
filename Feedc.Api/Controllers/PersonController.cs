@@ -12,6 +12,7 @@ using Feedc.Application.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Feedc.Application.Query.PersonQueries;
 using Feedc.Application.Command.PersonCommands;
+using Serilog;
 
 namespace Feedc.Api.Controllers
 {
@@ -19,11 +20,13 @@ namespace Feedc.Api.Controllers
     [Route("feedcperson/")]
     public class PersonController : Controller
     {
+        private readonly ILogger _logger;
         private QueryExecutor _queryExecutor;
         private CommandExecutor _commandExecutor;
 
-        public PersonController(QueryExecutor queryExecutor, CommandExecutor commandExecutor, UserManager<User> userManager)
+        public PersonController(ILogger logger, QueryExecutor queryExecutor, CommandExecutor commandExecutor)
         {
+            _logger = Log.ForContext<PersonController>();
             _queryExecutor = queryExecutor;
             _commandExecutor = commandExecutor;
         }
