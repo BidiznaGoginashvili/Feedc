@@ -1,10 +1,10 @@
 using System;
 using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.MSSqlServer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Serilog.Events;
 using Microsoft.Extensions.Configuration;
-using Serilog.Sinks.MSSqlServer;
 
 namespace Feedc.Api
 {

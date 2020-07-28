@@ -31,7 +31,7 @@ namespace Feedc.Application.Command.PersonCommands
                 context.Add(person);
                 person.User = user;
                 context.SaveChanges();
-                _logger.Information("inputed");
+                throw new Exception();
                 return await OkAsync();
             }
             catch (Exception exception)

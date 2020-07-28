@@ -20,13 +20,11 @@ namespace Feedc.Api.Controllers
     [Route("feedcperson/")]
     public class PersonController : Controller
     {
-        private readonly ILogger _logger;
         private QueryExecutor _queryExecutor;
         private CommandExecutor _commandExecutor;
 
-        public PersonController(ILogger logger, QueryExecutor queryExecutor, CommandExecutor commandExecutor)
+        public PersonController( QueryExecutor queryExecutor, CommandExecutor commandExecutor)
         {
-            _logger = Log.ForContext<PersonController>();
             _queryExecutor = queryExecutor;
             _commandExecutor = commandExecutor;
         }
