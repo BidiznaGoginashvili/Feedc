@@ -34,9 +34,6 @@ namespace Feedc.Api.Controllers
         [Route("registration")]
         public async Task<IActionResult> Registration([FromBody] CreateUserCommand command)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
-
             var result = await _commandExecutor.ExecuteAsync(command);
 
             if (!result.Success)
@@ -49,9 +46,6 @@ namespace Feedc.Api.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] AuthenticateUserQuery query)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
-
             var result = await _queryExecutor.ExecuteAsync<AuthenticateUserQuery, User>(query);
 
             if (result.Success)
