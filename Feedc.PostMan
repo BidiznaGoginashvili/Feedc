@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "5175dfab-e1df-454f-9a9e-4527661d2283",
+		"name": "Feedc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:44305/feedcuser/CreateUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FirstName\":\"bidzina\",\r\n    \"Password\":\"b123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44305/feedcuser/registration",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"feedcuser",
+						"registration"
+					]
+				},
+				"description": "CreateUser"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44305/feedcuser/LoginUser",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FirstName\":\"bidzina\",\r\n    \"Password\":\"b123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44305/feedcuser/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"feedcuser",
+						"login"
+					]
+				},
+				"description": "LoginUser\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44305/feedcperson/createperson",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiaWR6aW5hIiwic2lkIjoiMSIsImp0aSI6IjYyOWU5NTViLTU2N2UtNDZkNS04YjNhLTU4YTI2MWU4NjA5NiIsImV4cCI6MTU5NTkzMTQyNywiaXNzIjoiZmVlZGMiLCJhdWQiOiJmZWVkYyJ9.yLZeHHfSk_3MNWdu0tedJ4cyZ3FyVP6tufNFCpLcsWg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FirstName\":\"Nikita\",\r\n    \"LastName\":\"Giorgeva\",\r\n    \"Phone\":\"578848586\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44305/feedcperson/createperson",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"feedcperson",
+						"createperson"
+					]
+				},
+				"description": "CreatePerson\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44305/feedcperson/addphonenumber",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiaWR6aW5hIiwic2lkIjoiMSIsImp0aSI6IjYyOWU5NTViLTU2N2UtNDZkNS04YjNhLTU4YTI2MWU4NjA5NiIsImV4cCI6MTU5NTkzMTQyNywiaXNzIjoiZmVlZGMiLCJhdWQiOiJmZWVkYyJ9.yLZeHHfSk_3MNWdu0tedJ4cyZ3FyVP6tufNFCpLcsWg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"PersonId\":1,\r\n    \"Phone\":\"500404040\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44305/feedcperson/boundphonenumber",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"feedcperson",
+						"boundphonenumber"
+					]
+				},
+				"description": "AddPhoneNumberOnPerson  "
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44305/feedcperson/deleteperson",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiaWR6aW5hIiwic2lkIjoiMSIsImp0aSI6IjYyOWU5NTViLTU2N2UtNDZkNS04YjNhLTU4YTI2MWU4NjA5NiIsImV4cCI6MTU5NTkzMTQyNywiaXNzIjoiZmVlZGMiLCJhdWQiOiJmZWVkYyJ9.yLZeHHfSk_3MNWdu0tedJ4cyZ3FyVP6tufNFCpLcsWg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\":1\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44305/feedcperson/deleteperson",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"feedcperson",
+						"deleteperson"
+					]
+				},
+				"description": "DeletePerson"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44305/feedcperson/phonelisting",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiaWR6aW5hIiwic2lkIjoiMSIsImp0aSI6IjYyOWU5NTViLTU2N2UtNDZkNS04YjNhLTU4YTI2MWU4NjA5NiIsImV4cCI6MTU5NTkzMTQyNywiaXNzIjoiZmVlZGMiLCJhdWQiOiJmZWVkYyJ9.yLZeHHfSk_3MNWdu0tedJ4cyZ3FyVP6tufNFCpLcsWg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44305/feedcperson/getpersons",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"feedcperson",
+						"getpersons"
+					]
+				},
+				"description": "PhoneListing\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44305/feedcperson/personbyphone",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiaWR6aW5hIiwic2lkIjoiMSIsImp0aSI6IjYyOWU5NTViLTU2N2UtNDZkNS04YjNhLTU4YTI2MWU4NjA5NiIsImV4cCI6MTU5NTkzMTQyNywiaXNzIjoiZmVlZGMiLCJhdWQiOiJmZWVkYyJ9.yLZeHHfSk_3MNWdu0tedJ4cyZ3FyVP6tufNFCpLcsWg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Phone\":\"578848586\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44305/feedcperson/getperson",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"feedcperson",
+						"getperson"
+					]
+				},
+				"description": "PersonByPhone"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
