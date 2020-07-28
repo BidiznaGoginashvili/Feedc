@@ -31,8 +31,8 @@ namespace Feedc.Api.Controllers
         }
 
         [HttpPost]
-        [Route("CreateUser")]
-        public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
+        [Route("registration")]
+        public async Task<IActionResult> Registration([FromBody] CreateUserCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -46,8 +46,8 @@ namespace Feedc.Api.Controllers
         }
 
         [HttpGet("login")]
-        [Route("LoginUser")]
-        public async Task<IActionResult> Authenticate([FromBody] AuthenticateUserQuery query)
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] AuthenticateUserQuery query)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

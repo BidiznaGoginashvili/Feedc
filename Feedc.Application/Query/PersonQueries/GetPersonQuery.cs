@@ -6,16 +6,16 @@ using Feedc.Infrastructure.Database.Repository;
 
 namespace Feedc.Application.Query.PersonQueries
 {
-    public class GetPersonByPhoneQuery : Query<Person>
+    public class GetPersonQuery : Query<Person>
     {
         public string Phone { get; set; }
 
-        public GetPersonByPhoneQuery()
+        public GetPersonQuery()
         {
 
         }
 
-        public GetPersonByPhoneQuery(string phone)
+        public GetPersonQuery(string phone)
         {
             Phone = phone;
         }

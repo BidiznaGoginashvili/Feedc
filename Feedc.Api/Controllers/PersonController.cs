@@ -31,7 +31,7 @@ namespace Feedc.Api.Controllers
         [HttpPost]
         [Route("createperson")]
         [Authorize]
-        public async Task<IActionResult> Create([FromBody] CreatePersonCommand command)
+        public async Task<IActionResult> CreateAsync([FromBody] CreatePersonCommand command)
         {
             var user = HttpContext.User.Identity as ClaimsIdentity;
             if (user == null)
@@ -51,7 +51,7 @@ namespace Feedc.Api.Controllers
         [HttpPost]
         [Route("deleteperson")]
         [Authorize]
-        public async Task<IActionResult> Delete([FromBody] DeletePersonCommand command)
+        public async Task<IActionResult> DeleteAsync([FromBody] DeletePersonCommand command)
         {
             var result = await _commandExecutor.ExecuteAsync(command);
 
@@ -62,9 +62,9 @@ namespace Feedc.Api.Controllers
         }
 
         [HttpPost]
-        [Route("addphonenumber")]
+        [Route("boundphonenumber")]
         [Authorize]
-        public async Task<IActionResult> AddPhoneNumber([FromBody] AddPersonPhoneCommand command)
+        public async Task<IActionResult> BoundPhoneNumber([FromBody] AddPersonPhoneCommand command)
         {
             var result = await _commandExecutor.ExecuteAsync(command);
 
@@ -75,41 +75,43 @@ namespace Feedc.Api.Controllers
         }
 
         [HttpGet]
-        [Route("personbyphone")]
+        [Route("getperson")]
         [Authorize]
-        public async Task<IActionResult> PersonByPhone([FromBody] GetPersonByPhoneQuery query)
+        public async Task<IActionResult> GetPerson([FromBody] GetPersonQuery query)
         {
-            var result = await _queryExecutor.ExecuteAsync<GetPersonByPhoneQuery, Person>(query);
+            var result = await _queryExecutor.ExecuteAsync<GetPersonQuery, Person>(query);
 
             if (!result.Success)
                 return BadRequest(new { success = false });
 
-            string serialized = JsonConvert.SerializeObject(new
+            return Ok(new
             {
-                firstName = result.Data.FirstName,
-                Phone = result.Data.Phone
+                data = JsonConvert.SerializeObject(new
+                {
+                    firstName = result.Data.FirstName,
+                    Phone = result.Data.Phone
+                })
             });
-
-            return Ok(new { data = serialized });
         }
 
         [HttpGet]
-        [Route("phonelisting")]
+        [Route("getpersons")]
         [Authorize]
-        public async Task<IActionResult> PersonsPhonesListing([FromQuery] GetPersonsPhonesQuery query)
+        public async Task<IActionResult> GetPersons([FromQuery] GetPersonsPhonesQuery query)
         {
             var result = await _queryExecutor.ExecuteAsync<GetPersonsPhonesQuery, List<Person>>(query);
 
             if (!result.Success)
                 return BadRequest(new { success = false });
 
-            string serialized = JsonConvert.SerializeObject(result.Data.Select(data => new
+            return Ok(new
             {
-                firstName = data.FirstName,
-                Phone = data.Phone
-            }));
-
-            return Ok(new { data = serialized });
+                data = JsonConvert.SerializeObject(result.Data.Select(data => new
+                {
+                    firstName = data.FirstName,
+                    Phone = data.Phone
+                }))
+            });
         }
     }
 }
